@@ -7,7 +7,7 @@ name=input("Name of the Patient:- ")
 # Get a list of available serial ports
 available_ports = list(serial.tools.list_ports.comports())
 #initializing a numpy array to store 10000 temperature data points
-data_array=np.zeros(10000)
+data_array=np.zeros(10)
 t=0
 # begins the counter
 t1=time.time()
@@ -17,15 +17,15 @@ for port in available_ports:
     # baud rate should match the serial baudrate ie. 9600
     ard_data=serial.Serial(port.device,9600)
     time.sleep(1)
-    #seting the loop for 10000 times
-    while t<10000:
+    #seting the loop for 10 times
+    while t<10:
         while(ard_data.inWaiting()==0):
             pass
         #processing the data from serial port and converting it to integer
         data=ard_data.readline()
         data=str(data,'utf-8')
         data=data.strip('\r\n')
-        data=int(data)
+        data=float(data)
         print(data)
         data_array[t]=data
         t=t+1

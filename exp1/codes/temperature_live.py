@@ -11,10 +11,11 @@ for port in available_ports:
     ard_data=serial.Serial(port.device,9600)
     # waiting 1 Sec for the communication to start
     time.sleep(1)
-    while(ard_data.inWaiting()==0):
-        pass
-    data=ard_data.readline()
-    data=str(data,'utf-8')
-    data=data.strip('\r\n')
-    data=int(data)
-    print(data)
+    while True:
+        while(ard_data.inWaiting()==0):
+            pass
+        data=ard_data.readline()
+        data=str(data,'utf-8')
+        data=data.strip('\r\n')
+        data=float(data)
+        print(data)
